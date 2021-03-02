@@ -13,11 +13,12 @@ client
       query GetTodoList {
         todoList {
           name
+          completed
         }
       }
     `
   })
-  .then(result => console.log(result));
+  .then(({ data }) => console.log(data));
 
 function App() {
   return (
