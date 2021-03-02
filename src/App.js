@@ -18,7 +18,7 @@ client
       }
     `
   })
-  .then(({ data }) => data);
+  .then(({ data }) => console.log(data));
 
 function App() {
   return (
