@@ -1,5 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'https://aqueous-waters-77285.herokuapp.com',
+  cache: new InMemoryCache()
+});
+
+client
+  .query({
+    query: gql`
+      query GetTodoList {
+        todoList {
+          name
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
 
 function App() {
   return (
