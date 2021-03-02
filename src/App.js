@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client';
 
 const client = new ApolloClient({
   uri: 'https://aqueous-waters-77285.herokuapp.com',
@@ -18,26 +18,28 @@ client
       }
     `
   })
-  .then(({ data }) => console.log(data));
+  .then(({ data }) => data);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+        </header>
+      </div>
+    </ApolloProvider>
   );
 }
 
